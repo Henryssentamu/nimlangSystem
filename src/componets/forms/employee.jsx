@@ -3,182 +3,272 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 
 export function EmployeeRecruitmentForm(){
+    const [depts, setDepts] = React.useState([{"deptId":"122","Deptname":"Medical"},{"deptId":"123","Deptname":"Finance"},{"deptId":"122","Deptname":"Sales"},{"deptId":"124","Deptname":"R&D"}])
+    const [branches, setbranches ] = React.useState([{"branchId":"112","branchname":"Main"}, {"branchId":"113","branchname":"Masaka-Impigi"}])
+    const [positions ,setpositions] = React.useState([{"PositionId": "311","Positionname":"manager"},{"PositionId": "312","Positionname":"Accountant"},{"PositionId": "313","Positionname":"medical doctor"}])
+    const [typeOfEmployment, settypeOfEmployment ] = React.useState([{"employmentId":"433","emplomentname":"Full Time"}, {"employmentId":"431","emplomentname":"Part Time"},{"employmentId":"434","emplomentname":"Contract"}])
+
+    function getinputDetails(event){
+        // this function get all input values and send
+        // Return: array of  objects 
+        event.preventDefault();
+        const formdata = new FormData(event.target);
+        const data = Object.fromEntries(formdata);
+        console.log(data);
+        alert(data);
+        
+        window.location.reload();
+    };
+    function GenenrateDepts(){
+        return depts.map((obj) =>{
+            return(
+                <option data-dept-id={obj.deptId} value={obj.Deptname}>{obj.Deptname}</option> 
+            )
+        })
+    };
+
+    function GenenrateBranches(){
+        return branches.map((obj) =>{
+            return(
+                <option data-branch-id={obj.branchId} value={obj.branchname}>{obj.branchname}</option> 
+            )
+        })
+    }
+
+    function GenenratePositions(){
+        return positions.map((obj) =>{
+            return(
+                <option data-position-id={obj.PositionId} value={obj.Positionname}>{obj.Positionname}</option> 
+            )
+        })
+    }
+
+    function GenenrateEmploymentType(){
+        return typeOfEmployment.map((obj) =>{
+            return(
+                <option data-typeofemployment-id={obj.employmentId} value={obj.emplomentname}>{obj.emplomentname}</option> 
+            )
+        })
+    }
+
+
     return(
-        <body>
-        <div className="container mt-5">
-            <h2 className="text-center mb-4">Employee Details Form</h2>
-            <form>
-            {/* <!-- Personal Details Section --> */}
-            <div class="card mb-4">
-                <div className="card-header bg-primary text-white">Personal Details</div>
-                <div className="card-body">
-                <div className="row mb-3">
-                    <div className="col-md-6">
-                    <label for="firstName" className="form-label">First Name</label>
-                    <input type="text" className="form-control" id="firstName" placeholder="E.g IVAN" required />
+        <div>
+            <nav className="navbar navbar-expand-lg bg-success">
+                <div className="container-fluid">
+                    <div className="navbar-brand text-white" >Nimlang</div>
+                    <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#back">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="navbar-collapse collapse" id="back">
+                        <ul className="navbar-nav ms-lg-auto">
+                            <li className="nav-item">
+                                <a href="/admin" className="nav-link text-white">Back</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-md-6">
-                    <label for="lastName" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="lastName" placeholder="E.g Kasule" required />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div className="col-md-6">
-                    <label for="residence" className="form-label">Residence</label>
-                    <input type="text" className="form-control" id="residence" placeholder="E.g Kyebando" required />
-                    </div>
-                    <div className="col-md-6">
-                    <label for="contact" className="form-label">Contact</label>
-                    <input type="text" className="form-control" id="contact" placeholder="E.g 0755126655" required />
-                    </div>
-                    
-                </div>
-                <div class="row mb-3">
-                    <div className="col-md-6">
-                    <label for="nationality" class="form-label">Nationality</label>
-                    <input type="text" className="form-control" id="nationality" placeholder="E.g Ugandan" required />
-                    </div>
-                    <div className="col-md-6">
-                    <label for="contact" className="form-label">Email</label>
-                    <input type="email" className="form-control" placeholder="E.g kasuleivan@gmail.com"  required />
-                    </div>
-                </div>
-                </div>
-            </div>
 
-            {/* <!-- Next of Kin Section --> */}
-            <div class="card mb-4">
-                <div className="card-header bg-secondary text-white">Next of Kin</div>
-                <div className="card-body">
-                <div className="row mb-3">
-                    <div class="col-md-6">
-                    <label for="kinName" className="form-label">Full Name</label>
-                    <input type="text" className="form-control" id="kinName" placeholder="E.g kasule Ivan" required />
+                </div>
+
+
+            </nav>
+            <div className="container mt-5">
+                <h2 className="text-center mb-4">Employee Details Form</h2>
+                <form onSubmit={getinputDetails}  >
+                {/* <!-- Personal Details Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-success text-white">Personal Details</div>
+                    <div className="card-body">
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                First Name
+                                <input name="FirstName" type="text" className="form-control"  placeholder="E.g IVAN" required />
+                            </label>
+                            
+                            
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label" >
+                                Last Name
+                                <input name="Lastname" type="text" className="form-control"  placeholder="E.g Kasule" required />
+                            </label>
+                            
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                    <label for="kinContact" className="form-label">Contact</label>
-                    <input type="text" className="form-control" id="kinContact" placeholder="E.g 0755126655" required />
+                    <div className="row mb-3">
+                        <div className="col md-6">
+                            <label className="form-label">
+                                Religion
+                                <input name="Religion" type="text" className="form-control" placeholder="E.g Musilm" required/>
+                            </label>
+                        </div>
+                        <div className="col md-6">
+                            <label className="form-label">
+                                Age
+                                <input name="Age" type="number" className="form-control" placeholder="E.g 59" required/>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Residence
+                                <input name="Residence" type="text" className="form-control" placeholder="E.g Kyebando" required />
+                            </label>
+                            
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Contact
+                                <input name="Contact" type="text" className="form-control" id="contact" placeholder="E.g 0755126655" required />
+
+                            </label>
+                        </div>
+                        
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label" >
+                                Nationality
+                                <input name="Nationality" type="text" className="form-control"  placeholder="E.g Ugandan" required />
+                            </label>
+                            
+                        </div>
+
+                        <div className="col-md-6">
+                            <label className="form-label" >
+                                Email
+                                <input name="Email" type="email" className="form-control" placeholder="E.g kasuleivan@gmail.com"  required />
+                            </label>
+                            
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
 
-            {/* <!-- Position and Department Section --> */}
-            <div className="card mb-4">
-                <div className="card-header bg-info text-white">Position & Department</div>
-                <div className="card-body">
-                <div className="row mb-3">
-                    <div className="col-md-4">
-                        <label for="position" className="form-label">Position</label>
-                    <select className="form-select" id="position" required>
-                        <option value="" selected disabled>Select position</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Engineer">Engineer</option>
-                        <option value="Technician">Technician</option>
-                    </select>
+                {/* <!-- Next of Kin Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-info text-white">Next of Kin</div>
+                    <div className="card-body">
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Full Name
+                                <input type="text" className="form-control" name="kinName" placeholder="E.g kasule Ivan" required />
+                            </label>
+                        </div>
+
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Contact
+                                <input type="text" className="form-control" name="kinContact" placeholder="E.g 0755126655" required />
+                            </label>
+                        
+                        </div>
+
                     </div>
-                    <div className="col-md-4">
-                        <label for="department" class="form-label">Department</label>
-                        <select className="form-select" id="department" required>
-                            <option value="" selected disabled>Select position</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Medical">Medical</option>
-                            <option value="Sales">Technician</option>
-                        </select>
-                    </div>
-                    <div className="col-md-4">
-                        <label for="employmentType" class="form-label">Type of Employment</label>
-                        <select className="form-select" id="employmentType" required>
-                            <option value="" selected disabled>Select employment type</option>
-                            <option value="Full-time">Full-time</option>
-                            <option value="Part-time">Part-time</option>
-                            <option value="Contract">Contract</option>
-                        </select>   
                     </div>
                 </div>
-                </div>
-            </div>
 
-            {/* <!-- Health Details Section --> */}
-            {/* <div className="card mb-4">
-                <div className="card-header bg-success text-white">Health Details</div>
-                <div className="card-body">
-                <div className="mb-3">
-                    <label for="healthDetails" class="form-label">Health Details</label>
-                    <textarea className="form-control" id="healthDetails" rows="3" placeholder="Enter health details"></textarea>
-                </div>
-                </div>
-            </div> */}
-
-            {/* <!-- Bank Details Section --> */}
-            <div className="card mb-4">
-                <div className="card-header bg-warning text-white">Bank Details</div>
-                <div className="card-body">
-                <div className="row mb-3">
-
-                    <div className="col-md-6">
-                        <label for="bankName" class="form-label">Bank Name</label>
-                        <input type="text" class="form-control" id="bankName" placeholder="E.g Equity " required />
+                {/* <!-- Position and Department Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-success text-white">Position & Department</div>
+                    <div className="card-body">
+                    <div className="row mb-3">
+                        <div className="col-md-3">
+                            <label  className="form-label">Position</label>
+                            <select className="form-select" name="position" required>
+                                <option value="" selected disabled>Select position</option>
+                                < GenenratePositions />
+                            </select>
+                        </div>
+                        <div className="col-md-3">
+                            <label className="form-label">Department</label>
+                            <select className="form-select" name="department" required>
+                                <option value="" selected disabled>Select position</option>
+                                < GenenrateDepts />
+                            </select>
+                        </div>
+                        <div className="col-md-3">
+                            <label  className="form-label">Type of Employment</label>
+                            <select className="form-select" name="employmentType" required>
+                                <option value="" selected disabled>Select employment type</option>
+                                < GenenrateEmploymentType />
+                            </select>   
+                        </div>
+                        <div className="col-md-3">
+                            <label  className="form-label">Branch</label>
+                            <select name="branch" className="form-select" >
+                                <option value="" selected disabled>select Branch</option>
+                                < GenenrateBranches />
+                            </select>
+                        </div>
                     </div>
-                    
-                    <div className="col-md-6">
-                        <label for="accountNumber" class="form-label">Account Number</label>
-                        <input type="text" class="form-control" id="accountNumber" placeholder="1033103367353" required />
-                    </div> 
+                    </div>
                 </div>
-                </div>
-            </div>
 
-            {/* <!-- Education Details Section --> */}
-            <div className="card mb-4">
-                <div className="card-header bg-dark text-white">Education Details</div>
-                <div className="card-body">
-                <div className="mb-3">
-                    <label for="educationDetails" class="form-label">Education Details</label>
-                    <textarea class="form-control" id="educationDetails" rows="3" placeholder="Enter education details"></textarea>
-                </div>
-                </div>
-            </div>
-
-            {/* <!-- Type of Employment Section --> */}
-            {/* <div className="card mb-4">
-                <div className="card-header bg-danger text-white">Type of Employment</div>
-                <div className="card-body">
-                <label for="employmentType" class="form-label">Type of Employment</label>
-                <select className="form-select" id="employmentType" required>
-                    <option value="" selected disabled>Select employment type</option>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                </select>
-                </div>
-            </div> */}
-
-            {/* <!-- Photo Upload Section --> */}
-            <div className="card mb-4">
-                <div className="card-header bg-primary text-white">Photo Upload</div>
-                <div className="card-body">
-                <label for="photoUpload" className="form-label">Upload Photo</label>
-                <input type="file" class="form-control" id="photoUpload" accept="image/*"></input>
                 
-                </div>
-            </div>
 
-            {/* <!-- PDF Upload Section --> */}
-            <div className="card mb-4">
-                <div className="card-header bg-secondary text-white">PDF Upload</div>
-                <div className="card-body">
-                <label for="pdfUpload" className="form-label">Upload PDF</label>
-                <input ttype="file" className="form-control" id="pdfUpload" accept=".pdf" />
-                </div>
-            </div>
+                {/* <!-- Bank Details Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-info text-white">Bank Details</div>
+                    <div className="card-body">
+                    <div className="row mb-3">
 
-            {/* <!-- Submit Button --> */}
-            <div className="text-center">
-                <button type="submit" className="btn btn-success">Submit</button>
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Bank Name
+                                <input type="text" className="form-control" name="bankName" placeholder="E.g Equity " required />
+                            </label>
+                            
+                            
+                        </div>
+                        
+                        <div className="col-md-6">
+                            <label className="form-label">
+                                Account Number
+                                <input type="text" className="form-control" name="accountNumber" placeholder="1033103367353" required />
+                            </label>
+                        </div> 
+                    </div>
+                    </div>
+                </div>
+
+                {/* <!-- Education Details Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-success text-white">Education Details</div>
+                    <div className="card-body">
+                    <div className="mb-3">
+                        <label className="form-label">
+                            Upload Accademic scanned documents(PDF)
+                            <input type="file" className="form-control" name="accademic" accept=".pdf" />
+                        </label>
+                    </div>
+                    </div>
+                </div>
+
+
+                {/* <!-- Photo Upload Section --> */}
+                <div className="card mb-4">
+                    <div className="card-header bg-info text-white">Employee profile Photo</div>
+                    <div className="card-body">
+                        <label className="form-label">
+                            Upload Photo
+                            <input type="file" className="form-control" name="photoUpload" accept="image/*"></input>
+
+                        </label>
+                    </div>
+                </div>
+
+                
+
+                {/* <!-- Submit Button --> */}
+                <div className="text-center">
+                    <button  type="submit" p-5 className="btn btn-success">Submit</button>
+                </div>
+                </form>
             </div>
-            </form>
         </div>
-        </body>
     )
 }

@@ -9,9 +9,17 @@ export function Adminheader(){
         marginRight:"10px"
     }
 
+    const headerH = {
+        height :"70px",
+        position:"fixt",
+        top:"0px",
+        left:"0px",
+        right:"0px"
+    }
+
    
     return(
-        <nav className="navbar navbar-expand-lg bg-success " >
+        <nav className="navbar navbar-expand-lg bg-success " style={headerH}>
             <div className="container-fluid">
                 <div className="navbar-brand text-white">Nimlang</div>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
