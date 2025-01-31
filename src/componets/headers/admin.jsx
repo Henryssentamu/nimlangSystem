@@ -13,6 +13,8 @@ export function Adminheader() {
     top: "0px",
     left: "0px",
     right: "0px",
+    fontFamily: "Poppins",
+    fontSize: "20px",
   };
 
   return (
@@ -37,10 +39,10 @@ export function Adminheader() {
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#createAccount"
-                className="nav-link activate text-white"
+                className="nav-link activate text-white "
                 aria-current="page"
               >
-                Create Account
+                Register
               </button>
               <div className="modal fade" id="createAccount">
                 <div className="modal-dialog">
@@ -57,7 +59,7 @@ export function Adminheader() {
                       </div>
                       <div className="client">
                         <a href="admin/clientRegistering" className="btn btn-success">
-                          Client Account
+                          Register Client
                         </a>
                       </div>
                     </div>

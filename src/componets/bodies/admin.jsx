@@ -24,17 +24,23 @@ function Sidebar() {
     alignItems: "center",
     paddingTop: "20px",
     gap: "10px",
+    fontFamily: "Poppins",
+    fontSize: "20px",
+    fontWeight: "400px",
   };
   return (
     <div className="container bg-success roboto-bold" style={sidebarGeneralCss}>
-      <a href="/admin/deptments" className="link" style={links}>
+      <a href="/admin/deptments" className="btn btn-outline-info link" style={links}>
         Deptments
       </a>
-      <a href="/admin/branches" className="link" style={links}>
+      <a href="/admin/branches" className=" btn btn-outline-info link" style={links}>
         Branches
       </a>
-      <a href="/admin/positions" className="link" style={links}>
+      <a href="/admin/positions" className="btn btn-outline-info link" style={links}>
         Positions
+      </a>
+      <a href="/admin/clientCenter" className="btn btn-outline-info link" style={links}>
+        Client Center
       </a>
     </div>
   );

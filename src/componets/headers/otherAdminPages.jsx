@@ -3,8 +3,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export function NavForOtherAdminPages() {
+  const positioning = {
+    positon: "fixed",
+    top: "0px",
+    left: "0px",
+    right: "0px",
+    height: "70px",
+    zIndex: "5px",
+  };
   return (
-    <nav className="navbar navbar-expand-lg bg-success">
+    <nav className="navbar navbar-expand-lg bg-success" style={positioning}>
       <div className="container-fluid">
         <div className="navbar-brand text-white">Nimlang</div>
         <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#back">

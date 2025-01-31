@@ -7,6 +7,7 @@ import { Department } from "./componets/adminSideBar/deptments";
 import { Branches } from "./componets/adminSideBar/branches";
 import { CreatePositions } from "./componets/adminSideBar/setpositions";
 import { PersonalMedicalForm } from "./componets/forms/clients";
+import { ClientRegistrationDashboard } from "./componets/adminSideBar/clientCenter";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/admin/branches" element={<Branches />} />
           <Route path="/admin/positions" element={<CreatePositions />} />
           <Route path="/admin/clientRegistering" element={<PersonalMedicalForm />} />
+          <Route path="/admin/clientCenter" element={<ClientRegistrationDashboard />} />
         </Routes>
       </Router>
     </div>
