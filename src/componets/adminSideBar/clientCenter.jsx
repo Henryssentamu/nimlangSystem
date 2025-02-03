@@ -45,7 +45,7 @@ export function ClientRegistrationDashboard() {
 
   return (
     <div>
-      <NavForOtherAdminPages />
+      {/* <NavForOtherAdminPages /> */}
       {/* filtering section */}
       <div className="row d-flex flex-column justify-content-center align-items-center text-center">
         <div style={headerStyling}>Filter Clients</div>
@@ -60,7 +60,14 @@ export function ClientRegistrationDashboard() {
             </select>
           </div>
           <div className="col-md-4">
-            <input type="date" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
+            <input
+              type="date"
+              className="form-control"
+              value={date}
+              onChange={(e) => {
+                return setDate(e.target.value);
+              }}
+            />
           </div>
           <div className="col-md-4">
             <select name="officer" className="form-select" value={officer} onChange={(e) => setOfficer(e.target.value)}>
@@ -86,7 +93,11 @@ export function ClientRegistrationDashboard() {
           <tbody>
             {filteredClients.map((client, index) => (
               <tr key={index}>
-                <td>{client.name}</td>
+                <td>
+                  <a href="/admin/clientprofile" className="table-link">
+                    {client.name}
+                  </a>
+                </td>
                 <td>{client.location}</td>
                 <td>{client.contact}</td>
               </tr>

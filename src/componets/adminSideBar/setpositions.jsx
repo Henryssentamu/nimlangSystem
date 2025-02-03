@@ -23,11 +23,14 @@ export function CreatePositions() {
     alert(data);
     window.location.reload();
   };
+  const styling = {
+    marginTop: "80px",
+  };
 
   return (
     <div>
       <NavForOtherAdminPages />
-      <div className="container mt-4">
+      <div className="container " style={styling}>
         {/* Header Section */}
 
         <div className="card p-4 mb-4">

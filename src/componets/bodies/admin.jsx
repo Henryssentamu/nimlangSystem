@@ -29,17 +29,17 @@ function Sidebar() {
     fontWeight: "400px",
   };
   return (
-    <div className="container bg-success roboto-bold" style={sidebarGeneralCss}>
-      <a href="/admin/deptments" className="btn btn-outline-info link" style={links}>
+    <div className="container bg-dark roboto-bold" style={sidebarGeneralCss}>
+      <a href="/admin/deptments" className="btn btn-outline-success link" style={links}>
         Deptments
       </a>
-      <a href="/admin/branches" className=" btn btn-outline-info link" style={links}>
+      <a href="/admin/branches" className=" btn btn-outline-success link" style={links}>
         Branches
       </a>
-      <a href="/admin/positions" className="btn btn-outline-info link" style={links}>
+      <a href="/admin/positions" className="btn btn-outline-success link" style={links}>
         Positions
       </a>
-      <a href="/admin/clientCenter" className="btn btn-outline-info link" style={links}>
+      <a href="/admin/clientCenter" className="btn btn-outline-success link" style={links}>
         Client Center
       </a>
     </div>

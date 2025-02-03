@@ -18,10 +18,14 @@ export function Department() {
     window.location.reload();
   };
 
+  const styling = {
+    marginTop: "85px",
+  };
+
   return (
     <div>
       <NavForOtherAdminPages />
-      <div className="container mt-4">
+      <div className="container" style={styling}>
         {/* Header Section */}
 
         <div className="card p-4 mb-4">

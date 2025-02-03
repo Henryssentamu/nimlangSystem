@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
 
 export function Branches() {
@@ -17,11 +18,14 @@ export function Branches() {
     alert(data);
     window.location.reload();
   };
+  const styling = {
+    marginTop: "80px",
+  };
 
   return (
     <div>
       <NavForOtherAdminPages />
-      <div className="container mt-4">
+      <div className="container" style={styling}>
         {/* Header Section */}
 
         <div className="card p-4 mb-4">

@@ -4,12 +4,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export function NavForOtherAdminPages() {
   const positioning = {
-    positon: "fixed",
+    position: "fixed",
     top: "0px",
     left: "0px",
     right: "0px",
     height: "70px",
-    zIndex: "5px",
+    zIndex: "5",
   };
   return (
     <nav className="navbar navbar-expand-lg bg-success" style={positioning}>
