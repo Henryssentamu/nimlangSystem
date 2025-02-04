@@ -11,6 +11,9 @@ export function ClientRegistrationDashboard() {
     marginTop: "10px",
     fontFamily: "poppins",
   };
+  const styling = {
+    marginTop: "75px",
+  };
 
   const [branch, setBranch] = useState("");
   const [date, setDate] = useState("");
@@ -45,9 +48,9 @@ export function ClientRegistrationDashboard() {
 
   return (
     <div>
-      {/* <NavForOtherAdminPages /> */}
+      <NavForOtherAdminPages />
       {/* filtering section */}
-      <div className="row d-flex flex-column justify-content-center align-items-center text-center">
+      <div className="row d-flex flex-column justify-content-center align-items-center text-center" style={styling}>
         <div style={headerStyling}>Filter Clients</div>
         <div className="row mb-4">
           <div className="col-md-4">
