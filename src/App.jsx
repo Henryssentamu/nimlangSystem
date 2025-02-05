@@ -20,7 +20,7 @@ export default function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/employeeRecruitment" element={<EmployeeRecruitmentForm />} />
           <Route path="/admin/deptments" element={<Department />} />
@@ -33,7 +33,7 @@ export default function App() {
           <Route path="/admin/clientMedicalReport" element={<DetailedReport />} />
           <Route path="/admin/receipt" element={<PaymentReceipt />} />
           <Route path="/admin/clientMedicalBills" element={<TreatmentBill />} />
-          <Route path="adminlogin" element={<Login />} />
+          <Route path="/adminloginOut" element={<Login />} />
         </Routes>
       </Router>
     </div>

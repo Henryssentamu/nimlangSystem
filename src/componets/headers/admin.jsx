@@ -85,7 +85,7 @@ export function Adminheader() {
                       <button className="btn-close" type="button" data-bs-dismiss="modal"></button>
                     </div>
                     <div className="modal-body">
-                      <a href="#" className="btn btn-danger link ">
+                      <a href="/adminloginOut" className="btn btn-danger link ">
                         logout
                       </a>
                     </div>

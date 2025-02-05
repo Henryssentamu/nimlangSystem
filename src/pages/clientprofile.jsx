@@ -12,6 +12,17 @@ export function ClientProfilOnAdmin() {
     left: "0px",
     top: "70px",
   };
+
+  const ClientImage = {
+    width: "30",
+    borderRadius: "15px",
+    border: "solid 2px green",
+  };
+  const cardStyles = {
+    border: "none",
+    // width: "50px",
+    padding: "30px",
+  };
   return (
     <div>
       <NavForOtherAdminPages />
@@ -36,6 +47,23 @@ export function ClientProfilOnAdmin() {
 
           {/* Main Content */}
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div className="row mt-4 mb-4">
+              <div className="col">
+                <div className="card shadow-sm" style={cardStyles}>
+                  Notification
+                </div>
+              </div>
+              <div className="col">
+                <div className="card shadow-sm" style={cardStyles}>
+                  <div className="row">
+                    <div className="col">Muwonge Peter</div>
+                    <div className="col">
+                      <img src="/vite.svg" alt="client image" style={ClientImage} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row mt-4">
               {/* Cards */}
               <div className="col-md-4">
