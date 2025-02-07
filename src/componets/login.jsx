@@ -8,7 +8,7 @@ export function Login() {
     e.preventDefault();
     const formdata = new FormData(e.target);
     const logindetails = Object.fromEntries(formdata);
-    if (!logindetails.Username || !logindetails.Password) {
+    if (!logindetails.EmployeeId || !logindetails.Password) {
       alert("please provide your Login credentials");
     } else {
       fetch("http://127.0.0.1:5000/login", {
@@ -16,7 +16,7 @@ export function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(logindetails),
+        body: JSON.stringify({ type: "admin", data: logindetails }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -42,9 +42,9 @@ export function Login() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
-              Username
+              EmployeeId
             </label>
-            <input type="text" className="form-control" id="username" name="Username" placeholder="Enter your username" />
+            <input type="text" className="form-control" id="username" name="EmployeeId" placeholder="Enter your EmployeeId" />
           </div>
 
           <div className="mb-4">

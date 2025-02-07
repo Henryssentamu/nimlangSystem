@@ -2,8 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
+import { useRef } from "react";
 
 export function EmployeeRecruitmentForm() {
+  const academicRef = useRef();
+  const photoRef = useRef();
   const [depts, setDepts] = React.useState([
     { deptId: "122", Deptname: "Medical" },
     { deptId: "123", Deptname: "Finance" },
@@ -27,19 +30,41 @@ export function EmployeeRecruitmentForm() {
 
   function getinputDetails(event) {
     // this function get all input values and send
-    // Return: array of  objects
     event.preventDefault();
-    const formdata = new FormData(event.target);
-    const data = Object.fromEntries(formdata);
-    console.log(data);
-    alert(data);
+    const academicDocument = academicRef.current.files[0];
+    const photo = photoRef.current.files[0];
 
-    window.location.reload();
+    const formdata = new FormData(event.target);
+    formdata.append("accademic", academicDocument);
+    formdata.append("photo", photo);
+    console.log(photo);
+    console.log(academicDocument);
+
+    // formdata.
+
+    if (formdata) {
+      fetch("http://127.0.0.1:5000/recruiteEmployee", {
+        method: "POST",
+        body: formdata,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("server error while sending employee recruite details");
+          }
+          return response.json();
+        })
+        .then((formdata) => {
+          // window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
   function GenenrateDepts() {
-    return depts.map((obj) => {
+    return depts.map((obj, index) => {
       return (
-        <option data-dept-id={obj.deptId} value={obj.Deptname}>
+        <option key={index} data-dept-id={obj.deptId} value={obj.Deptname}>
           {obj.Deptname}
         </option>
       );
@@ -47,9 +72,9 @@ export function EmployeeRecruitmentForm() {
   }
 
   function GenenrateBranches() {
-    return branches.map((obj) => {
+    return branches.map((obj, index) => {
       return (
-        <option data-branch-id={obj.branchId} value={obj.branchname}>
+        <option key={index} data-branch-id={obj.branchId} value={obj.branchname}>
           {obj.branchname}
         </option>
       );
@@ -57,9 +82,9 @@ export function EmployeeRecruitmentForm() {
   }
 
   function GenenratePositions() {
-    return positions.map((obj) => {
+    return positions.map((obj, index) => {
       return (
-        <option data-position-id={obj.PositionId} value={obj.Positionname}>
+        <option key={index} data-position-id={obj.PositionId} value={obj.Positionname}>
           {obj.Positionname}
         </option>
       );
@@ -67,9 +92,9 @@ export function EmployeeRecruitmentForm() {
   }
 
   function GenenrateEmploymentType() {
-    return typeOfEmployment.map((obj) => {
+    return typeOfEmployment.map((obj, index) => {
       return (
-        <option data-typeofemployment-id={obj.employmentId} value={obj.emplomentname}>
+        <option key={index} data-typeofemployment-id={obj.employmentId} value={obj.emplomentname}>
           {obj.emplomentname}
         </option>
       );
@@ -82,7 +107,7 @@ export function EmployeeRecruitmentForm() {
 
       <div className="container mt-5">
         <h2 className="text-center mb-4">Employee Details Form</h2>
-        <form onSubmit={getinputDetails}>
+        <form onSubmit={getinputDetails} enctype="multipart/form-data">
           {/* <!-- Personal Details Section --> */}
           <div className="card mb-4">
             <div className="card-header bg-success text-white">Personal Details</div>
@@ -243,7 +268,7 @@ export function EmployeeRecruitmentForm() {
               <div className="mb-3">
                 <label className="form-label">
                   Upload Accademic scanned documents(PDF)
-                  <input type="file" className="form-control" name="accademic" accept=".pdf" />
+                  <input ref={academicRef} type="file" className="form-control" name="accademic" accept=".pdf" />
                 </label>
               </div>
             </div>
@@ -255,7 +280,7 @@ export function EmployeeRecruitmentForm() {
             <div className="card-body">
               <label className="form-label">
                 Upload Photo
-                <input type="file" className="form-control" name="photoUpload" accept="image/*"></input>
+                <input ref={photoRef} type="file" className="form-control" name="photoUpload" accept="image/*"></input>
               </label>
             </div>
           </div>

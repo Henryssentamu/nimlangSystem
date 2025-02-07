@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { Home } from "./componets/home";
 import { AdminDashboard } from "./pages/admin";
 import { EmployeeRecruitmentForm } from "./componets/forms/employee";
@@ -20,7 +21,7 @@ export default function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/employeeRecruitment" element={<EmployeeRecruitmentForm />} />
           <Route path="/admin/deptments" element={<Department />} />
@@ -33,7 +34,8 @@ export default function App() {
           <Route path="/admin/clientMedicalReport" element={<DetailedReport />} />
           <Route path="/admin/receipt" element={<PaymentReceipt />} />
           <Route path="/admin/clientMedicalBills" element={<TreatmentBill />} />
-          <Route path="/adminloginOut" element={<Login />} />
+          <Route path="/admin/login" element={<Login />} />
+          {/* <Route path="/adminloginOut" element={<Login />} /> */}
         </Routes>
       </Router>
     </div>
