@@ -17,11 +17,32 @@ export function CreatePositions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formdata = new FormData(e.target);
-    const data = Object.fromEntries(formdata);
-    console.log(data);
-    alert(data);
-    window.location.reload();
+    const position = document.getElementById("position").value;
+    const data = { position: position };
+
+    fetch("http://127.0.0.1:5000/admin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ type: "position", data: data }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("server error while sending create position data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          window.location.reload();
+        } else {
+          alert(data);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
   const styling = {
     marginTop: "80px",
@@ -37,7 +58,7 @@ export function CreatePositions() {
           <h3>Create Positions</h3>
           <form onSubmit={handleSubmit} className="row g-3">
             <div className="col-md-4">
-              <input type="text" className="form-control" placeholder="Position" name="position" required />
+              <input type="text" id="position" className="form-control" placeholder="Position" name="position" required />
             </div>
             {/* <div className="col-md-4">
               <select name="Employee" className="form-select">

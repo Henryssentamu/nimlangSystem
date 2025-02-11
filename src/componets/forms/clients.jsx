@@ -1,14 +1,38 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
 
 export function PersonalMedicalForm() {
+  const photoRef = useRef();
+
   function handleSubmit(event) {
     event.preventDefault();
+    const photo = photoRef.current.files[0];
     const formdata = new FormData(event.target);
-    const data = Object.fromEntries(formdata);
-    console.log(data);
+    if (photo) formdata.append("photo", photo);
+
+    fetch("http://127.0.0.1:5000/registeringClients", {
+      method: "POST",
+      body: formdata,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("server error while sending client registration details");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status === "ok") {
+          alert("client details submited");
+          window.location.reload();
+        } else {
+          alert("check the error ");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }
 
   return (
@@ -36,7 +60,7 @@ export function PersonalMedicalForm() {
                 </select>
               </div>
               <div className="col-md-3">
-                <input type="date" className="form-control" name="dob" required placeholder="Date of birth" />
+                <input type="date" className="form-control" name="DateOfBirth" required placeholder="Date of birth" />
               </div>
               <div className="col-md-4">
                 <input type="text" className="form-control" placeholder="Occupation" name="occupation" required />
@@ -97,7 +121,7 @@ export function PersonalMedicalForm() {
             </div>
             <div className="row">
               <label className="form-label">
-                <input type="file" accept="image/*" className="form-control" />
+                <input type="file" ref={photoRef} accept="image/*" className="form-control" />
               </label>
             </div>
 

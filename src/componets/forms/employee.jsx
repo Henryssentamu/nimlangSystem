@@ -35,8 +35,10 @@ export function EmployeeRecruitmentForm() {
     const photo = photoRef.current.files[0];
 
     const formdata = new FormData(event.target);
-    formdata.append("accademic", academicDocument);
-    formdata.append("photo", photo);
+    if (academicDocument) formdata.append("accademic", academicDocument);
+    if (photo) formdata.append("photoUpload", photo);
+    // formdata.append("accademic", academicDocument);
+    // formdata.append("photo", photo);
     console.log(photo);
     console.log(academicDocument);
 
@@ -100,12 +102,15 @@ export function EmployeeRecruitmentForm() {
       );
     });
   }
+  const styling = {
+    marginTop: "150px",
+  };
 
   return (
     <div>
       {<NavForOtherAdminPages />}
 
-      <div className="container mt-5">
+      <div className="container " style={styling}>
         <h2 className="text-center mb-4">Employee Details Form</h2>
         <form onSubmit={getinputDetails} enctype="multipart/form-data">
           {/* <!-- Personal Details Section --> */}

@@ -12,10 +12,33 @@ export function Branches() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formdata = new FormData(e.target);
-    const data = Object.fromEntries(formdata);
-    console.log(data);
-    alert(data);
+    const branchName = document.getElementById("branchName").value;
+    const location = document.getElementById("location").value;
+    const data = { branchName: branchName, location: location };
+
+    fetch("http://127.0.0.1:5000/admin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ type: "branch", data: data }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("server error while sending create position data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          window.location.reload();
+        } else {
+          alert(data);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
     window.location.reload();
   };
   const styling = {
@@ -32,10 +55,10 @@ export function Branches() {
           <h3>Create Branch</h3>
           <form onSubmit={handleSubmit} className="row g-3">
             <div className="col-md-4">
-              <input type="text" className="form-control" placeholder="Branch Name" name="BranchName" required />
+              <input type="text" id="branchName" className="form-control" placeholder="Branch Name" name="BranchName" required />
             </div>
             <div className="col-md-4">
-              <input type="text" className="form-control" placeholder="Branch Office Loaction" name="Location" />
+              <input type="text" id="location" className="form-control" placeholder="Branch Office Loaction" name="Location" />
             </div>
             <div className="col-4">
               <button type="submit" className="btn btn-primary">
