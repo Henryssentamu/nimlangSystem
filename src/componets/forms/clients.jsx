@@ -24,8 +24,7 @@ export function PersonalMedicalForm() {
       })
       .then((data) => {
         if (data.status === "ok") {
-          alert("client details submited");
-          window.location.reload();
+          window.location.href = "/clientRegistered";
         } else {
           alert("check the error ");
         }

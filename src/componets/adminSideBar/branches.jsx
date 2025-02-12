@@ -3,6 +3,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
+import { apiGateway } from "../../urls";
 
 export function Branches() {
   const [branches, setbranches] = useState([
@@ -16,7 +17,7 @@ export function Branches() {
     const location = document.getElementById("location").value;
     const data = { branchName: branchName, location: location };
 
-    fetch("http://127.0.0.1:5000/admin", {
+    fetch(`${apiGateway}/admin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +31,9 @@ export function Branches() {
         return response.json();
       })
       .then((data) => {
-        if (data) {
-          window.location.reload();
+        if (data.status === "ok") {
+          window.location.href = "/branchcreated";
+          // window.location.reload();
         } else {
           alert(data);
         }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
+import { apiGateway } from "../../urls";
 
 export function Department() {
   const [departments, setDepartments] = useState([
@@ -15,9 +16,7 @@ export function Department() {
     const Deptname = document.getElementById("Deptname").value;
     const data = { Deptname: Deptname, DeptDiscription: DeptDiscription };
 
-    console.log(data);
-    alert(data);
-    fetch("http://127.0.0.1:5000/admin", {
+    fetch(`${apiGateway}/admin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "dept", data: data }),
@@ -29,8 +28,8 @@ export function Department() {
         return response.json();
       })
       .then((data) => {
-        if (data) {
-          window.location.reload();
+        if (data.status === "ok") {
+          window.location.href = "/deptcreated";
         }
       })
       .catch((error) => {

@@ -21,7 +21,6 @@ def login():
 @app.route("/admin", methods=["POST","GET"])
 def admin():
       if request.method == "POST":
-        print(request.json)
         response = requests.post(f"{employ_service}/admin", json=request.json, stream=True)
         return jsonify(response.json()),200
 

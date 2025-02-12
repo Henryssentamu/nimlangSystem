@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavForOtherAdminPages } from "../headers/otherAdminPages";
+import { apiGateway } from "../../urls";
 
 export function CreatePositions() {
   const [Employees, setEmployees] = useState([
@@ -20,7 +21,7 @@ export function CreatePositions() {
     const position = document.getElementById("position").value;
     const data = { position: position };
 
-    fetch("http://127.0.0.1:5000/admin", {
+    fetch(`${apiGateway}/admin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,8 +35,8 @@ export function CreatePositions() {
         return response.json();
       })
       .then((data) => {
-        if (data) {
-          window.location.reload();
+        if (data.status === "ok") {
+          window.location.href = "/positioncreated";
         } else {
           alert(data);
         }

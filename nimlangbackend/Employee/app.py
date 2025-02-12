@@ -27,20 +27,21 @@ def Admin():
              
 
 
-@app.route("/recruiteEmployee", methods=["POST"])
+@app.route("/recruiteEmployee", methods=["POST", "GET"])
 def recruiteEmployee():
-    data = request.form
-    fileData = request.files
-    if "accademic" not in fileData and "photoUpload" not in fileData:
-        return jsonify({"error": "Missing required files"}), 400
+    if request.method == "POST":
+        data = request.form
+        fileData = request.files
+        if "accademic" not in fileData and "photoUpload" not in fileData:
+            return jsonify({"error": "Missing required files"}), 400
 
-    academic_file = fileData["accademic"]
-    photo_file = fileData["photoUpload"]
+        academic_file = fileData["accademic"]
+        photo_file = fileData["photoUpload"]
 
-    # print("Received form data:", data)
-    print("Received files in employee serverice:", academic_file, photo_file)
-	
-    return jsonify({"status": "successful"})
+        # print("Received form data:", data)
+        print("Received files in employee serverice:", academic_file, photo_file)
+        
+        return jsonify({"status": "ok"})
 
 
 

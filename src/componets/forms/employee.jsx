@@ -39,8 +39,6 @@ export function EmployeeRecruitmentForm() {
     if (photo) formdata.append("photoUpload", photo);
     // formdata.append("accademic", academicDocument);
     // formdata.append("photo", photo);
-    console.log(photo);
-    console.log(academicDocument);
 
     // formdata.
 
@@ -55,8 +53,10 @@ export function EmployeeRecruitmentForm() {
           }
           return response.json();
         })
-        .then((formdata) => {
-          // window.location.reload();
+        .then((data) => {
+          if (data.status == "ok") {
+            window.location.href = "/employeeRecruited";
+          }
         })
         .catch((error) => {
           console.log(error);

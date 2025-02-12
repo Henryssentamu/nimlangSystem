@@ -15,6 +15,11 @@ import { DetailedReport } from "./pages/medicalReports";
 import { PaymentReceipt } from "./pages/receipts";
 import { TreatmentBill } from "./pages/clientsmedicalBills";
 import { Login } from "./componets/login";
+import { BranchSuccessfullyCreated } from "./componets/submissionSuccessfullMessages/creatingBranch";
+import { DeptmentSuccessfullyCreated } from "./componets/submissionSuccessfullMessages/createDeptment";
+import { PositionSuccessfullyCreated } from "./componets/submissionSuccessfullMessages/createPosition";
+import { EmployeeSuccessfullyRecruited } from "./componets/submissionSuccessfullMessages/employeeRecruited";
+import { ClientSuccessfullyRegistered } from "./componets/submissionSuccessfullMessages/client";
 
 export default function App() {
   return (
@@ -35,7 +40,11 @@ export default function App() {
           <Route path="/admin/receipt" element={<PaymentReceipt />} />
           <Route path="/admin/clientMedicalBills" element={<TreatmentBill />} />
           <Route path="/admin/login" element={<Login />} />
-          {/* <Route path="/adminloginOut" element={<Login />} /> */}
+          <Route path="/branchcreated" element={<BranchSuccessfullyCreated />} />
+          <Route path="/deptcreated" element={<DeptmentSuccessfullyCreated />} />
+          <Route path="/positioncreated" element={<PositionSuccessfullyCreated />} />
+          <Route path="/employeeRecruited" element={<EmployeeSuccessfullyRecruited />} />
+          <Route path="/clientRegistered" element={<ClientSuccessfullyRegistered />} />
         </Routes>
       </Router>
     </div>

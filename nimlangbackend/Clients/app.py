@@ -9,13 +9,13 @@ CORS(app)
 
 
 
-@app.route("/registeringClients", methods=["POST"])
+@app.route("/registeringClients", methods=["POST","GET"])
 def registeringClients():
-		formData = request.form
-		photo = request.files
-		print(f"form:{formData} /n")
-		print(f"iles:{photo}")
-		return jsonify({"status":"ok"})
+		if request.method == "POST":
+			formData = request.form
+			photo = request.files
+			if formData and photo:
+				return jsonify({"status":"ok"})
 	
 if __name__ == "__main__":
 	app.run(port=5003,debug=True)
