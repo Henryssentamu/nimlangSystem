@@ -9,11 +9,19 @@ app.config["SECRATE_KEY"] ="REWIUWURRYY48IW393IE"
 
 @app.route("/login",methods=["POST"])
 def login():
-	dataType = request.json.get("type")
-	if dataType == "admin":
+	whoisloginingIn = request.json.get("type")
+	if whoisloginingIn == "admin":
 		data = request.json.get("data")
 		# login addmin and on return, include user as admin
 		print(data)
+		return jsonify({"loginStatus":"ok","user":"admin"}), 200
+	elif whoisloginingIn == "officer":
+		data = request.json.get("data")
+		print(f" officer:{data}")
+		return jsonify({"loginStatus":"ok","user":"admin"}), 200 
+	elif whoisloginingIn == "focalPerson":
+		data = request.json.get("data")
+		print(f" officer:{data}")
 		return jsonify({"loginStatus":"ok","user":"admin"}), 200
 	return {"loginStatus":"not ok"}, 400
 

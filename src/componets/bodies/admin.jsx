@@ -42,6 +42,9 @@ function Sidebar() {
       <a href="/admin/clientCenter" className="btn btn-outline-success link" style={links}>
         Client Center
       </a>
+      <a href="/admin/hospital" className="btn btn-outline-success link" style={links}>
+        Hospitals
+      </a>
     </div>
   );
 }

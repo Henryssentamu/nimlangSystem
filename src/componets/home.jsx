@@ -28,8 +28,11 @@ export function Home() {
                         <a href="/admin/login" className="btn btn-secondary m-1">
                           Admin
                         </a>
-                        <a href="" className="btn btn-secondary m-1">
+                        <a href="/admin/loginOfficer" className="btn btn-secondary m-1">
                           Officer
+                        </a>
+                        <a href="/admin/focalPerson" className="btn btn-secondary m-1">
+                          focalPerson
                         </a>
                       </div>
                     </div>

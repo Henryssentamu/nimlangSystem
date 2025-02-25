@@ -14,8 +14,13 @@ auth_service = "http://127.0.0.1:5001"
 
 @app.route("/login", methods=["POST"])
 def login():
-	response = requests.post(f"{auth_service}/login",json=request.json)
-	return jsonify(response.json()), 200
+    """
+        This login end point just recieves post requests from the client server
+        And forward them to the authentication service which determins who wants to login 
+        By checking the type parameter in the request
+    """
+    response = requests.post(f"{auth_service}/login",json=request.json)
+    return jsonify(response.json()), 200
 
 
 @app.route("/admin", methods=["POST","GET"])
