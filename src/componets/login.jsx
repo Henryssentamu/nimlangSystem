@@ -11,7 +11,7 @@ export function Login() {
     if (!logindetails.EmployeeId || !logindetails.Password) {
       alert("please provide your Login credentials");
     } else {
-      fetch("http://127.0.0.1:5000/login", {
+      fetch("http://127.0.0.1:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export function LoginOfficer() {
     if (!logindetails.EmployeeId || !logindetails.Password) {
       alert("please provide your Login credentials");
     } else {
-      fetch("http://127.0.0.1:5000/login", {
+      fetch("http://127.0.0.1:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,7 +158,7 @@ export function LoginFocalPerson() {
     if (!logindetails.EmployeeId || !logindetails.Password) {
       alert("please provide your Login credentials");
     } else {
-      fetch("http://127.0.0.1:5000/login", {
+      fetch("http://127.0.0.1:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

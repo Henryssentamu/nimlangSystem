@@ -1,0 +1,121 @@
+version: "3.8"
+
+services:
+  apigateway:
+    build: ./apiGateway
+    ports:
+      - "8000:5000"
+    depends_on:
+      - authentication
+      - employee
+      - clients
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app_network
+
+  authentication:
+    build: ./authentication
+    ports:
+      - "8001:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app_network
+
+  employee:
+    build: ./employee
+    ports:
+      - "8002:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app_network
+
+  clients:
+    build: ./clients
+    ports:
+      - "8003:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+# the one bellow will be used when i include mysal databases
+
+# version: "3.8"
+
+# services:
+#   apigateway:
+#     build: ./apiGateway
+#     ports:
+#       - "8000:5000"
+#     depends_on:
+#       - authentication
+#       - employee
+#       - clients
+#       - mysql  # Ensure MySQL starts before the API Gateway
+#     environment:
+#       - FLASK_ENV=development
+#     networks:
+#       - app_network
+
+#   authentication:
+#     build: ./authentication
+#     ports:
+#       - "8001:5000"
+#     environment:
+#       - FLASK_ENV=development
+#       - DATABASE_URL=mysql://root:examplepassword@mysql:3306/authentication_db  # Database connection
+#     depends_on:
+#       - mysql
+#     networks:
+#       - app_network
+
+#   employee:
+#     build: ./employee
+#     ports:
+#       - "8002:5000"
+#     environment:
+#       - FLASK_ENV=development
+#       - DATABASE_URL=mysql://root:examplepassword@mysql:3306/employee_db
+#     depends_on:
+#       - mysql
+#     networks:
+#       - app_network
+
+#   clients:
+#     build: ./clients
+#     ports:
+#       - "8003:5000"
+#     environment:
+#       - FLASK_ENV=development
+#       - DATABASE_URL=mysql://root:examplepassword@mysql:3306/clients_db
+#     depends_on:
+#       - mysql
+#     networks:
+#       - app_network
+
+#   mysql:
+#     image: mysql:5.7
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: examplepassword
+#       MYSQL_DATABASE: authentication_db  # Create default database
+#     ports:
+#       - "3306:3306"
+#     networks:
+#       - app_network
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+
+# networks:
+#   app_network:
+#     driver: bridge
+
+# volumes:
+#   mysql_data:
+
